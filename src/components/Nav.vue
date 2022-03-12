@@ -1,0 +1,93 @@
+<template>
+  <div class="d-flex flex-row justify-space-around nav">
+    <img
+      v-if="!($vuetify.breakpoint.xs || $vuetify.breakpoint.sm)"
+      src="@/assets/imgs/its.png"
+      alt="Logoits"
+      class="logoits"
+    />
+    <div class="d-flex align-center">
+      <div
+        class="text-h6 font-weight-bold mr-3 ml-3 route"
+        :class="`${select === tab.id ? 'route-selected' : 'route-no-selected'}`"
+        v-for="tab in links"
+        :key="tab.id"
+        @click="selectTab(tab)"
+      >
+        | {{ tab.name }} |
+      </div>
+    </div>
+    <img
+      v-if="!($vuetify.breakpoint.xs || $vuetify.breakpoint.sm)"
+      src="@/assets/imgs/Logo-TecNM-2017.png"
+      alt="logotecnm"
+      class="logotecnm"
+    />
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Navbar",
+  data: () => {
+    return {
+      select: 0,
+      links: [
+        { name: "Inicio", route: "Home", id: 0 },
+        { name: "Unidad 1", route: "Unidad1", id: 1 },
+        { name: "Unidad 2", route: "Unidad2", id: 2 },
+        { name: "Unidad 3", route: "Unidad3", id: 3 },
+        { name: "Unidad 4", route: "Unidad4", id: 4 },
+        { name: "Tareas", route: "Homework", id: 5 },
+      ],
+    };
+  },
+  mounted() {
+    this.startRoute();
+  },
+
+  methods: {
+    selectTab(route) {
+      this.select = route.id;
+      this.$router.push({ name: route.route });
+    },
+    startRoute() {
+      this.select = 0;
+      this.$router.push({ name: "Home" });
+    },
+  },
+};
+</script>
+
+<style>
+.nav {
+  padding: 30px;
+  background: #691640;
+  color: #ffffff;
+}
+
+.route {
+  cursor: pointer;
+}
+
+.route-no-selected {
+  color: #ffffff;
+}
+
+.route-selected {
+  color: #b18199;
+}
+
+.bodyContainer {
+  min-height: calc(100vh - 40px);
+}
+
+.logoits {
+  width: 10%;
+  height: 10%;
+}
+.logotecnm {
+  width: 15%;
+  height: 10%;
+}
+</style>
