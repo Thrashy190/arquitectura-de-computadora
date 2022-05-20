@@ -1,4 +1,4 @@
-# arqui
+# Arquitectura de computadoras
 
 ## Project setup
 ```
